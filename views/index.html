@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Welcome to tweetsville</title>
+  <!-- Import the jQuery library so we can use it to manipulate the page -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+  <!-- We have to get the socket library on the client in order to use it! This is how it's done in HTML -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+  <!-- There is a css framework called bootstrap that makes things a bit easier when writing css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
+</head>
+<body>
+	<h1>Tweets are cool. No...?</h1>
+
+  <!-- HINT HINT. Let's create a DIV to put our tweets in -->
+  <div class="container" id="tweet-container"></div>
+
+  <script>
+    // Here we define the new socket client. This code comes from the script we've imported on line 7.
+    var socket = io();
+    // This didn't seem to work before but it's not a big deal.
+    socket.on('connection', function() {
+    	console.log('it works!')
+    });
+
+    // We created a 'channel' in the 'app.js' file that the sockets server would 'emit' tweets on.
+    // We need to listen to that channel in order to get the information it's sending.
+    socket.on('tweets', function(tweet) {
+      console.log(tweets)
+      // Here we're just 'logging' out the tweets in to the web browser's console but we could be doing more!
+      // in the final example I'm using jQuery to append the tweets to the page. If you've used it before, why not give it a go?
+      // I've included the jQuery library already (line 7)
+      // I'll give you a head start...
+      // First create some html as a string
+      // var html = ''<div class="row"><div class="col-md-6 col-md-offset-3 tweet"> ... </div></div>' OR WHATEVER YOU WANT.
+      // Take a look at the 'tweet' variable and see how you could include the data inside of the html. In JavaScript it's called 'String Concatenation'
+      // Then 'append' html to the 'tweet-container' by using jQuery.
+
+      // If you're unsure about jQuery then don't worry. Have a read of this: https://learn.jquery.com/about-jquery/how-jquery-works/
+      // Then have a read of the API Documentation, specifically. https://api.jquery.com/category/manipulation/
+    });
+  </script>
+</body>
+</html>
